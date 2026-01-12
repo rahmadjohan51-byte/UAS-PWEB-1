@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Johnlux - Marketplace Jam Tangan Mewah</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Georgia', serif;
+    background-color: #000;
+    color: #d4af37;
+    overflow-x: hidden;
+  }
+
+  /* Header Styles */
+  header {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #d4af37;
+    position: sticky;
+    top: 0;
+    background-color: #000;
+    z-index: 1000;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .logo-container h1 {
+    font-size: 2em;
+    letter-spacing: 2px;
+  }
+
+  .diamond-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+
+  nav a {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+
+  nav a:hover {
+    color: #fff;
+  }
+
+  .auth-buttons {
+    display: flex;
+    gap: 15px;
+  }
+
+  .auth-btn {
+    background-color: transparent;
+    color: #d4af37;
+    padding: 8px 20px;
+    border: 2px solid #d4af37;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+  }
+
+  .auth-btn:hover {
+    background-color: #d4af37;
+    color: #000;
+  }
+
+  /* Hero Section */
+  .hero {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+  }
+
+  .hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .hero-slide.active {
+    opacity: 1;
+  }
+
+  .hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 10;
+  }
+
+  .hero-content h2 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  }
+
+  .hero-content p {
+    font-size: 1.5em;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  }
+
+  /* Section Styles */
+  section {
+    padding: 80px 40px;
+    scroll-margin-top: 100px;
+  }
+
+  section h2 {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  /* Products Section */
+  .products {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .product {
+    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+    padding: 30px;
+    width: 320px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #d4af37;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+  }
+
+  .product img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  .product h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+  }
+
+  .product p {
+    color: #ccc;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  .product .price {
+    font-size: 1.5em;
+    color: #d4af37;
+    font-weight: bold;
+    margin: 20px 0;
+  }
+
+  .buy-button {
+    background-color: #d4af37;
+    color: #000;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    font-size: 1em;
+  }
+
+  .buy-button:hover {
+    background-color: #fff;
+    transform: scale(1.05);
+  }
+
+  /* About Section */
+  #tentang {
+    background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+    border-top: 2px solid #d4af37;
+    border-bottom: 2px solid #d4af37;
+  }
+
+  .about-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 2;
+    font-size: 1.1em;
+    color: #ccc;
+  }
+
+  .about-content p {
+    margin-bottom: 20px;
+  }
+
+  /* Testimonials Section */
+  .testimonials-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .testimonial-card {
+    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #d4af37;
+    text-align: center;
+  }
+
+  .testimonial-card .stars {
+    color: #d4af37;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+  }
+
+  .testimonial-card p {
+    color: #ccc;
+    font-style: italic;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .testimonial-card .customer-name {
+    color: #d4af37;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  /* Contact Section */
+  #kontak {
+    background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+  }
+
+  .contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+  }
+
+  .contact-info {
+    padding: 30px;
+  }
+
+  .contact-info h3 {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+
+  .contact-item {
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .contact-item strong {
+    color: #d4af37;
+    font-size: 1.2em;
+  }
+
+  .map-container {
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid #d4af37;
+  }
+
+  .map-container iframe {
+    width: 100%;
+    height: 400px;
+    border: none;
+  }
+
+  .suggestion-box {
+    margin-top: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .suggestion-box h3 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: #1a1a1a;
+    border: 1px solid #d4af37;
+    border-radius: 5px;
+    color: #d4af37;
+    font-family: 'Georgia', serif;
+  }
+
+  .form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  .submit-btn {
+    background-color: #d4af37;
+    color: #000;
+    padding: 12px 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1em;
+    transition: all 0.3s;
+  }
+
+  .submit-btn:hover {
+    background-color: #fff;
+    transform: scale(1.05);
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 2px solid #d4af37;
+    background-color: #0a0a0a;
+  }
+
+  footer p {
+    margin: 10px 0;
+    color: #ccc;
+  }
+
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    overflow-y: auto;
+  }
+
+  .modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-content {
+    background: linear-gradient(145deg, #1a1a1a, #0a0a0a);
+    padding: 40px;
+    border-radius: 15px;
+    border: 2px solid #d4af37;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    animation: slideDown 0.3s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .close-modal {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 2em;
+    color: #d4af37;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .close-modal:hover {
+    color: #fff;
+  }
+
+  .modal-content h3 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .product-detail {
+    margin-bottom: 30px;
+  }
+
+  .product-detail img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  .product-detail p {
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 15px;
+  }
+
+  .payment-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #0a0a0a;
+    border-radius: 10px;
+    border: 1px solid #d4af37;
+  }
+
+  .payment-section h4 {
+    color: #d4af37;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+  }
+
+  .qris-code {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .qris-code img {
+    width: 250px;
+    height: 250px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .confirm-payment-btn {
+    width: 100%;
+    background-color: #d4af37;
+    color: #000;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    margin-top: 20px;
+    transition: all 0.3s;
+  }
+
+  .confirm-payment-btn:hover {
+    background-color: #fff;
+  }
+
+  .order-status {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #1a4d1a;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+  }
+
+  .order-status.show {
+    display: block;
+  }
+
+  .order-status p {
+    color: #90EE90;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    nav {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .hero-content h2 {
+      font-size: 2.5em;
+    }
+
+    .products {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-container {
+      grid-template-columns: 1fr;
+    }
+
+    section h2 {
+      font-size: 2em;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+  <div class="logo-container">
+    <svg class="diamond-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="diamondGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+          <stop offset="50%" style="stop-color:#fff;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#d4af37;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <polygon points="50,5 85,35 75,85 25,85 15,35" fill="url(#diamondGradient)" stroke="#d4af37" stroke-width="2"/>
+      <polygon points="50,5 85,35 50,50" fill="rgba(255,255,255,0.3)"/>
+      <polygon points="15,35 50,50 25,85" fill="rgba(0,0,0,0.3)"/>
+      <line x1="50" y1="5" x2="50" y2="50" stroke="#d4af37" stroke-width="1"/>
+      <line x1="15" y1="35" x2="85" y2="35" stroke="#d4af37" stroke-width="1"/>
+    </svg>
+    <h1>JOHNLUX</h1>
+  </div>
+  <nav>
+    <a href="#beranda">Beranda</a>
+    <a href="#produk">Produk</a>
+    <a href="#tentang">Tentang</a>
+    <a href="#testimoni">Testimoni</a>
+    <a href="#kontak">Kontak</a>
+  </nav>
+  <div class="auth-buttons">
+    <button class="auth-btn" onclick="openModal('loginModal')">Login</button>
+    <button class="auth-btn" onclick="openModal('registerModal')">Daftar</button>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section id="beranda" class="hero">
+  <div class="hero-slider">
+    <div class="hero-slide active">
+      <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=1600&h=900&fit=crop" alt="Luxury Watch 1">
+    </div>
+    <div class="hero-slide">
+      <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=1600&h=900&fit=crop" alt="Luxury Watch 2">
+    </div>
+
+  </div>
+  <div class="hero-content">
+    <h2>JOHNLUX</h2>
+    <p>Kemewahan Abadi di Pergelangan Tangan Anda</p>
+  </div>
+</section>
+
+<!-- Products Section -->
+<section id="produk">
+  <h2>Koleksi Eksklusif</h2>
+  <div class="products">
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=400&h=400&fit=crop" alt="Johnlux Royale" />
+      <h3>Johnlux Royale</h3>
+      <p>Desain modern minimalis dengan tali stainless steel silver, cocok untuk semua acara resmi.</p>
+      <p class="price">Rp 15.000.000</p>
+      <button class="buy-button" onclick="openProductModal('royale')">Beli</button>
+    </div>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1622434641406-a158123450f9?w=400&h=400&fit=crop" alt="Johnlux Elegance" />
+      <h3>Johnlux Elegance</h3>
+      <p>Jam tangan mewah dengan desain klasik dan tali kulit premium berwarna cokelat tua.</p>
+      <p class="price">Rp 18.000.000</p>
+      <button class="buy-button" onclick="openProductModal('elegance')">Beli</button>
+    </div>
+    <div class="product">
+      <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=400&h=400&fit=crop" alt="Johnlux Prestige" />
+      <h3>Johnlux Prestige</h3>
+      <p>Koleksi eksklusif limited edition dengan batu permata asli dan tali hitam yang mewah.</p>
+      <p class="price">Rp 25.000.000</p>
+      <button class="buy-button" onclick="openProductModal('prestige')">Beli</button>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="tentang">
+  <h2>Tentang Johnlux</h2>
+  <div class="about-content">
+    <p>
+      <strong>Johnlux</strong> lahir dari visi seorang pengrajin jam tangan Jenius, Rahmad Johan Wulang Nur Arofik, pada tahun 2023 di kota Malang, Indonesia. 
+      Dengan dedikasinya, Johnlux telah menjadi simbol kemewahan dan presisi yang tak tertandingi.
+    </p>
+    <p>
+      Setiap jam tangan Johnlux dibuat dengan tangan oleh para master horologist yang telah mewarisi keahlian turun-temurun. 
+      Kami menggunakan material terbaik dari seluruh dunia: safir kristal Swiss, emas 18 karat dari Italia, dan mekanisme Swiss-made yang telah teruji waktu.
+    </p>
+    <p>
+      Filosofi kami sederhana namun mendalam: <em>"Waktu adalah kemewahan sejati, dan setiap detik harus dirayakan dengan keindahan."</em>
+      Johnlux bukan sekadar jam tangan, tetapi warisan yang dapat diturunkan dari generasi ke generasi.
+    </p>
+    <p>
+      Dari bengkel kecil di Malang hingga menjadi merek internasional yang diakui, Johnlux tetap setia pada komitmen kami untuk menghadirkan 
+      karya seni yang fungsional, elegan, dan abadi. Setiap koleksi Johnlux adalah pernyataan gaya hidup yang mencerminkan kesuksesan, 
+      keanggunan, dan apresiasi terhadap keindahan sejati.
+    </p>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimoni">
+  <h2>Testimoni Pelanggan</h2>
+  <div class="testimonials-container">
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Johnlux Prestige adalah investasi terbaik yang pernah saya buat. Kualitasnya luar biasa dan desainnya sangat elegan. Saya mendapat banyak pujian setiap kali memakainya!"</p>
+        <p class="customer-name">- Budi Santoso, CEO</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Pelayanan Johnlux sangat profesional. Proses pembelian mudah dan pengiriman cepat. Jam tangannya benar-benar mewah dan sesuai ekspektasi!"</p>
+        <p class="customer-name">- Siti Nurhaliza, Pengusaha</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Saya membeli Johnlux Royale sebagai hadiah ulang tahun untuk suami saya. Dia sangat menyukainya! Kualitas dan detail jam ini benar-benar premium."</p>
+        <p class="customer-name">- Rina Wijaya, Dokter</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Johnlux Elegance sempurna untuk acara formal maupun casual. Desainnya timeless dan mekanismenya sangat presisi. Highly recommended!"</p>
+        <p class="customer-name">- Ahmad Fauzi, Arsitek</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Sebagai kolektor jam tangan, saya sangat terkesan dengan craftsmanship Johnlux. Setiap detail menunjukkan dedikasi dan keahlian tinggi."</p>
+        <p class="customer-name">- David Tan, Kolektor</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Johnlux bukan hanya jam tangan, tapi karya seni. Saya bangga memilikinya dan akan merekomendasikan kepada teman-teman saya."</p>
+        <p class="customer-name">- Lisa Permata, Fashion Designer</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="kontak">
+  <h2>Hubungi Kami</h2>
+  <div class="contact-container">
+    <div class="contact-info">
+      <h3>Informasi Kontak</h3>
+      <div class="contact-item">
+        <strong>Email:</strong> johnlux@gmail.com
+      </div>
+      <div class="contact-item">
+        <strong>Telepon:</strong> +62 822 232 724 164
+      </div>
+      <div class="contact-item">
+        <strong>Alamat:</strong> Kota Malang, Jawa Timur, Indonesia
+      </div>
+      <div class="contact-item">
+        <strong>Jam Operasional:</strong> Senin - Sabtu, 09:00 - 18:00 WIB
+      </div>
+    </div>
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56347862248!2d112.57311!3d-7.9666204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd629cf6c672477%3A0x8d21f55e8e5f53c!2sMalang%2C%20Kota%20Malang%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1234567890"
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
+
+  <div class="suggestion-box">
+    <h3>Kotak Saran</h3>
+    <form id="suggestionForm" onsubmit="submitSuggestion(event)">
+      <div class="form-group">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="suggestion">Saran Anda:</label>
+        <textarea id="suggestion" name="suggestion" required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Kirim Saran</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2024 Rahmad Johan Wulang Nur Arofik</p>
+  <p>Kontak: johnlux@gmail.com | +62 822 232 724 164</p>
+  <p>Kota Malang, Jawa Timur, Indonesia</p>
+</footer>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
+    <h3>Login ke Johnlux</h3>
+    <form onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" required>
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required>
+      </div>
+      <button type="submit" class="submit-btn">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- Register Modal -->
+<div id="registerModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('registerModal')">&times;</span>
+    <h3>Daftar Akun Johnlux</h3>
+    <form onsubmit="handleRegister(event)">
+      <div class="form-group">
+        <label for="regName">Nama Lengkap:</label>
+        <input type="text" id="regName" required>
+      </div>
+      <div class="form-group">
+        <label for="regEmail">Email:</label>
+        <input type="email" id="regEmail" required>
+      </div>
+      <div class="form-group">
+        <label for="regPhone">Nomor Telepon:</label>
+        <input type="tel" id="regPhone" required>
+      </div>
+      <div class="form-group">
+        <label for="regPassword">Password:</label>
+        <input type="password" id="regPassword" required>
+      </div>
+      <button type="submit" class="submit-btn">Daftar</button>
+    </form>
+  </div>
+</div>
+
+<!-- Product Modal -->
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeModal('productModal')">&times;</span>
+    <div id="productDetailContent"></div>
+  </div>
+</div>
+
+<script>
+  // Hero Slider
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.hero-slide');
+
+  function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[index].classList.add('active');
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  setInterval(nextSlide, 4000);
+
+  // Smooth Scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Modal Functions
+  function openModal(modalId) {
+    document.getElementById(modalId).classList.add('active');
+  }
+
+  function closeModal(modalId) {
+    document.getElementById(modalId).classList.remove('active');
+  }
+
+  // Product Data
+  const products = {
+    royale: {
+      name: 'Johnlux Royale',
+      price: 'Rp 15.000.000',
+      image: 'https://images.unsplash.com/photo-1594534475808-b18fc33b045e?w=400&h=400&fit=crop',
+      description: 'Desain modern minimalis dengan tali stainless steel silver, cocok untuk semua acara resmi.',
+      details: `
+        <strong>Spesifikasi Lengkap:</strong><br>
+        • Mekanisme: Swiss Quartz Precision Movement<br>
+        • Material Case: Titanium Grade 5 dengan PVD Coating<br>
+        • Diameter: 40mm<br>
+        • Ketebalan: 10mm<br>
+        • Kaca: Safir Kristal Double AR Coating<br>
+        • Tali: Stainless Steel 316L (Silver Brushed)<br>
+        • Water Resistance: 100 Meter<br>
+        • Garansi: 5 Tahun Internasional<br>
+        • Sertifikat: Authenticity Certificate & Serial Number<br><br>
+        Johnlux Elegance adalah pilihan sempurna untuk profesional modern yang menghargai kesederhanaan elegan dan fungsionalitas tinggi. Desain minimalis yang timeless.
+      `
+    },
+    elegance: {
+      name: 'Johnlux Elegance',
+      price: 'Rp 18.000.000',
+      image: 'https://images.unsplash.com/photo-1622434641406-a158123450f9?w=400&h=400&fit=crop',
+      description: 'Jam tangan mewah dengan desain klasik dan tali kulit premium berwarna cokelat tua.',
+      details: `
+        <strong>Spesifikasi Lengkap:</strong><br>
+        • Mekanisme: Swiss Automatic Movement<br>
+        • Material Case: Stainless Steel 316L dengan lapisan emas 18K<br>
+        • Diameter: 42mm<br>
+        • Ketebalan: 12mm<br>
+        • Kaca: Safir Kristal Anti-Gores<br>
+        • Tali: Kulit Asli Italia Premium (Cokelat Tua)<br>
+        • Water Resistance: 50 Meter<br>
+        • Garansi: 5 Tahun Internasional<br>
+        • Sertifikat: Authenticity Certificate & Serial Number<br><br>
+        Johnlux Royale menggabungkan keanggunan klasik dengan teknologi modern. Setiap detail dirancang dengan sempurna untuk mencerminkan status dan gaya hidup eksklusif Anda.
+      `
+    },
+    prestige: {
+      name: 'Johnlux Prestige',
+      price: 'Rp 25.000.000',
+      image: 'https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=400&h=400&fit=crop',
+      description: 'Koleksi eksklusif limited edition dengan batu permata asli dan tali hitam yang mewah.',
+      details: `
+        <strong>Spesifikasi Lengkap:</strong><br>
+        • Mekanisme: Swiss Tourbillon Automatic Movement<br>
+        • Material Case: Emas Rose Gold 18K Solid<br>
+        • Diameter: 44mm<br>
+        • Ketebalan: 14mm<br>
+        • Kaca: Safir Kristal Dome dengan AR Coating<br>
+        • Tali: Emas Rose Gold 18K Solid (Limited Edition)<br>
+        • Permata: 48 Berlian VVS (Total 1.2 Carat)<br>
+        • Water Resistance: 30 Meter<br>
+        • Garansi: Lifetime Warranty<br>
+        • Sertifikat: Authenticity Certificate, Serial Number & Diamond Certificate<br>
+        • Produksi: Limited Edition - Hanya 100 Unit di Dunia<br><br>
+        Johnlux Prestige adalah puncak kemewahan dan eksklusivitas. Setiap unit dibuat dengan tangan oleh master horologist dan dihiasi dengan berlian pilihan. Investasi yang akan meningkat nilainya seiring waktu.
+      `
+    }
+  };
+
+  function openProductModal(productKey) {
+    const product = products[productKey];
+    const content = `
+      <h3>${product.name}</h3>
+      <div class="product-detail">
+        <img src="${product.image}" alt="${product.name}">
+        <p>${product.description}</p>
+        <p class="price">${product.price}</p>
+        <p>${product.details}</p>
+      </div>
+      <div class="payment-section">
+        <h4>Metode Pembayaran: QRIS</h4>
+        <p style="color: #ccc;">Scan kode QRIS di bawah ini untuk melakukan pembayaran:</p>
+        <div class="qris-code">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=JOHNLUX-${productKey.toUpperCase()}-${Date.now()}" alt="QRIS Code">
+        </div>
+        <p style="color: #ccc; text-align: center;">Setelah melakukan pembayaran, klik tombol konfirmasi di bawah:</p>
+        <button class="confirm-payment-btn" onclick="confirmPayment('${product.name}')">Konfirmasi Pembayaran</button>
+        <div class="order-status" id="orderStatus">
+          <p>✓ Pembayaran Dikonfirmasi! Pesanan Anda akan segera dikirim.</p>
+          <p>Nomor Resi akan dikirim ke email Anda dalam 1x24 jam.</p>
+        </div>
+      </div>
+    `;
+    document.getElementById('productDetailContent').innerHTML = content;
+    openModal('productModal');
+  }
+
+  function confirmPayment(productName) {
+    document.getElementById('orderStatus').classList.add('show');
+    setTimeout(() => {
+      alert(`Terima kasih! Pesanan ${productName} Anda telah dikonfirmasi dan akan segera diproses untuk pengiriman.`);
+    }, 500);
+  }
+
+  // Form Handlers
+  function handleLogin(event) {
+    event.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    alert(`Login berhasil! Selamat datang kembali, ${email}`);
+    closeModal('loginModal');
+  }
+
+  function handleRegister(event) {
+    event.preventDefault();
+    const name = document.getElementById('regName').value;
+    alert(`Pendaftaran berhasil! Selamat datang di Johnlux, ${name}. Silakan login untuk melanjutkan.`);
+    closeModal('registerModal');
+    openModal('loginModal');
+  }
+
+  function submitSuggestion(event) {
+    event.preventDefault();
+    const name = document.getElementById('name').value;
+    alert(`Terima kasih atas saran Anda, ${name}! Kami akan meninjau dan merespons dalam 1x24 jam.`);
+    document.getElementById('suggestionForm').reset();
+  }
+
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+      event.target.classList.remove('active');
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kontak - Johnlux</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="logo"><h1>JOHNLUX</h1></div>
+    <nav>
+      <a href="index.html">Beranda</a>
+      <a href="katalog.html">Katalog</a>
+      <a href="kontak.html">Kontak</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <div class="hero-small"><h2>Hubungi Kami</h2></div>
+  <div class="container">
+    <div class="card">
+      <h3>Informasi Kontak</h3>
+      <p class="small">Email: johnlux@gmail.com</p>
+      <p class="small">Telepon: +62 822 232 724 164</p>
+      <p class="small">Alamat: Kota Malang, Jawa Timur, Indonesia</p>
+    </div>
+
+    <div class="card">
+      <h3>Kotak Saran</h3>
+      <form id="contactSuggestion" class="form" onsubmit="(function(e){e.preventDefault();alert('Terima kasih atas saran Anda!');document.getElementById('contactSuggestion').reset();})(event)">
+        <label>Nama</label>
+        <input name="name" required>
+        <label>Email</label>
+        <input name="email" type="email" required>
+        <label>Saran</label>
+        <textarea name="suggestion" required></textarea>
+        <button class="btn btn-primary" type="submit">Kirim Saran</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>© 2024 Rahmad Johan Wulang Nur Arofik — Johnlux</p>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
