@@ -1,178 +1,176 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JohnLux</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JOHNLUX</title>
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,
+    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+      <rect width='100' height='100' fill='black'/>
+      <text x='50%' y='65%' text-anchor='middle'
+            font-size='60'
+            fill='%23d4af37'
+            font-family='Georgia'
+            font-weight='bold'>J</text>
+    </svg>">
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #000;
-  color: #d4af37;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* HEADER */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 40px;
-  border-bottom: 2px solid #d4af37;
-}
+    body {
+      font-family: Georgia, serif;
+      background: #000;
+      color: #d4af37;
+    }
 
-.logo {
-  font-size: 28px;
-  font-weight: bold;
-}
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      border-bottom: 2px solid #d4af37;
+    }
 
-nav a {
-  color: #d4af37;
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-}
+    nav a {
+      color: #d4af37;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
 
-nav a:hover {
-  color: #fff;
-}
+    nav a:hover {
+      color: #fff;
+    }
 
-.auth-buttons button,
-.submit-btn {
-  background: transparent;
-  border: 2px solid #d4af37;
-  color: #d4af37;
-  padding: 8px 20px;
-  cursor: pointer;
-  margin-left: 10px;
-}
+    .auth-area button {
+      background: transparent;
+      border: 2px solid #d4af37;
+      color: #d4af37;
+      padding: 8px 20px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
 
-.auth-buttons button:hover,
-.submit-btn:hover {
-  background: #d4af37;
-  color: #000;
-}
+    .auth-area button:hover {
+      background: #d4af37;
+      color: #000;
+    }
 
-#profileBox {
-  display: none;
-  gap: 15px;
-  align-items: center;
-}
+    section {
+      padding: 80px 40px;
+      text-align: center;
+    }
 
-/* SECTION */
-section {
-  padding: 60px 40px;
-  text-align: center;
-}
+    footer {
+      border-top: 2px solid #d4af37;
+      text-align: center;
+      padding: 30px;
+      color: #ccc;
+    }
 
-/* MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.9);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
 
-.modal.active {
-  display: flex;
-}
+    .modal.active {
+      display: flex;
+    }
 
-.modal-content {
-  background: #111;
-  padding: 30px;
-  border: 2px solid #d4af37;
-  width: 100%;
-  max-width: 400px;
-  position: relative;
-}
+    .modal-content {
+      background: #111;
+      border: 2px solid #d4af37;
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+    }
 
-.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-}
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+    }
 
-.form-group {
-  margin-bottom: 15px;
-  text-align: left;
-}
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-}
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
 
-input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #d4af37;
-  background: #000;
-  color: #d4af37;
-}
-</style>
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      background: #000;
+      border: 1px solid #d4af37;
+      color: #d4af37;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: #d4af37;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .profile {
+      display: none;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">JOHNLUX</div>
+  <h1>JOHNLUX</h1>
+
   <nav>
-    <a href="#home">Home</a>
-    <a href="#produk">Produk</a>
-    <a href="#kontak">Kontak</a>
+    <a href="#">Beranda</a>
+    <a href="#">Produk</a>
+    <a href="#">Tentang</a>
+    <a href="#">Kontak</a>
   </nav>
 
-  <div class="auth-buttons">
-    <button onclick="openModal('loginModal')">Login</button>
-    <button onclick="openModal('registerModal')">Daftar</button>
-  </div>
-
-  <div id="profileBox">
-    <span id="profileName"></span>
-    <button onclick="logout()">Logout</button>
+  <div class="auth-area">
+    <span class="profile" id="profileName"></span>
+    <button id="loginBtn" onclick="openModal('loginModal')">Login</button>
+    <button id="registerBtn" onclick="openModal('registerModal')">Daftar</button>
   </div>
 </header>
 
-<section id="home">
-  <h1>Selamat Datang di JohnLux</h1>
-  <p>Luxury Watch Collection</p>
+<section>
+  <h2>Kemewahan Abadi di Pergelangan Tangan Anda</h2>
 </section>
 
-<section id="produk">
-  <h2>Produk</h2>
-  <p>Jam tangan eksklusif pilihan terbaik</p>
-</section>
+<footer>
+  <p>© 2024 Rahmad Johan Wulang Nur Arofik</p>
+</footer>
 
-<section id="kontak">
-  <h2>Buku Tamu</h2>
-  <form onsubmit="submitGuest(event)">
-    <div class="form-group">
-      <label>Nama</label>
-      <input required>
-    </div>
-    <div class="form-group">
-      <label>Pesan</label>
-      <input required>
-    </div>
-    <button class="submit-btn">Kirim</button>
-  </form>
-</section>
-
-<!-- LOGIN MODAL -->
 <div id="loginModal" class="modal">
   <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
+    <span class="close" onclick="closeModal('loginModal')">&times;</span>
     <h3>Login</h3>
     <form onsubmit="handleLogin(event)">
       <div class="form-group">
@@ -183,20 +181,19 @@ input {
         <label>Password</label>
         <input type="password" id="loginPassword" required>
       </div>
-      <button class="submit-btn">Login</button>
+      <button type="submit" class="submit-btn">Login</button>
     </form>
   </div>
 </div>
 
-<!-- REGISTER MODAL -->
 <div id="registerModal" class="modal">
   <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('registerModal')">&times;</span>
+    <span class="close" onclick="closeModal('registerModal')">&times;</span>
     <h3>Daftar</h3>
     <form onsubmit="handleRegister(event)">
       <div class="form-group">
         <label>Nama</label>
-        <input id="regName" required>
+        <input type="text" id="regName" required>
       </div>
       <div class="form-group">
         <label>Email</label>
@@ -206,68 +203,64 @@ input {
         <label>Password</label>
         <input type="password" id="regPassword" required>
       </div>
-      <button class="submit-btn">Daftar</button>
+      <button type="submit" class="submit-btn">Daftar</button>
     </form>
   </div>
 </div>
 
 <script>
-function openModal(id) {
-  document.getElementById(id).classList.add('active');
-}
-
-function closeModal(id) {
-  document.getElementById(id).classList.remove('active');
-}
-
-function handleRegister(e) {
-  e.preventDefault();
-  const users = JSON.parse(localStorage.getItem('users')) || [];
-  users.push({
-    name: regName.value,
-    email: regEmail.value,
-    password: regPassword.value
-  });
-  localStorage.setItem('users', JSON.stringify(users));
-  closeModal('registerModal');
-}
-
-function handleLogin(e) {
-  e.preventDefault();
-  const users = JSON.parse(localStorage.getItem('users')) || [];
-  const user = users.find(
-    u => u.email === loginEmail.value && u.password === loginPassword.value
-  );
-  if (!user) {
-    alert('Anda belum terdaftar');
-    return;
+  function openModal(id) {
+    document.getElementById(id).classList.add('active');
   }
-  localStorage.setItem('currentUser', JSON.stringify(user));
-  showProfile();
-  closeModal('loginModal');
-}
 
-function showProfile() {
-  const user = JSON.parse(localStorage.getItem('currentUser'));
-  if (user) {
-    document.querySelector('.auth-buttons').style.display = 'none';
-    profileBox.style.display = 'flex';
-    profileName.innerText = 'Halo, ' + user.name;
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('active');
   }
-}
 
-function logout() {
-  localStorage.clear();
-  location.reload();
-}
+  function handleRegister(e) {
+    e.preventDefault();
+    const user = {
+      name: regName.value,
+      email: regEmail.value,
+      password: regPassword.value
+    };
+    localStorage.setItem('johnluxUser', JSON.stringify(user));
+    closeModal('registerModal');
+    openModal('loginModal');
+  }
 
-function submitGuest(e) {
-  e.preventDefault();
-  alert('Terima kasih telah mengisi buku tamu');
-  e.target.reset();
-}
+  function handleLogin(e) {
+    e.preventDefault();
+    const user = JSON.parse(localStorage.getItem('johnluxUser'));
 
-showProfile();
+    if (!user) {
+      alert('Silakan daftar terlebih dahulu');
+      return;
+    }
+
+    if (
+      loginEmail.value === user.email &&
+      loginPassword.value === user.password
+    ) {
+      closeModal('loginModal');
+      showProfile(user.name);
+    } else {
+      alert('Email atau password salah');
+    }
+  }
+
+  function showProfile(name) {
+    document.getElementById('profileName').innerText = name;
+    document.getElementById('profileName').style.display = 'inline';
+    document.getElementById('loginBtn').style.display = 'none';
+    document.getElementById('registerBtn').style.display = 'none';
+  }
+
+  window.onclick = function(e) {
+    if (e.target.classList.contains('modal')) {
+      e.target.classList.remove('active');
+    }
+  };
 </script>
 
 </body>
