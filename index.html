@@ -4,6 +4,16 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Johnlux - Marketplace Jam Tangan Mewah</title>
+
+<link rel="icon" href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+  <rect width='100' height='100' rx='20' fill='black' />
+  <text x='50%' y='50%' dominant-baseline='central' text-anchor='middle' 
+        font-family='Georgia, serif' font-size='70' font-weight='bold' fill='%23d4af37'>
+    J
+  </text>
+</svg>">
+
 <style>
   * {
     margin: 0;
@@ -18,7 +28,6 @@
     overflow-x: hidden;
   }
 
-  /* Header Styles */
   header {
     padding: 20px 40px;
     display: flex;
@@ -86,7 +95,6 @@
     color: #000;
   }
 
-  /* Hero Section */
   .hero {
     position: relative;
     height: 600px;
@@ -139,7 +147,6 @@
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
   }
 
-  /* Section Styles */
   section {
     padding: 80px 40px;
     scroll-margin-top: 100px;
@@ -153,7 +160,6 @@
     letter-spacing: 3px;
   }
 
-  /* Products Section */
   .products {
     display: flex;
     justify-content: center;
@@ -220,7 +226,6 @@
     transform: scale(1.05);
   }
 
-  /* About Section */
   #tentang {
     background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
     border-top: 2px solid #d4af37;
@@ -240,7 +245,6 @@
     margin-bottom: 20px;
   }
 
-  /* Testimonials Section */
   .testimonials-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -280,7 +284,6 @@
     font-size: 1.1em;
   }
 
-  /* Contact Section */
   #kontak {
     background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
   }
@@ -383,7 +386,6 @@
     transform: scale(1.05);
   }
 
-  /* Footer */
   footer {
     text-align: center;
     padding: 40px;
@@ -396,7 +398,6 @@
     color: #ccc;
   }
 
-  /* Modal Styles */
   .modal {
     display: none;
     position: fixed;
@@ -538,7 +539,6 @@
     font-size: 1.1em;
   }
 
-  /* Responsive Design */
   @media (max-width: 768px) {
     header {
       flex-direction: column;
@@ -571,7 +571,6 @@
 </head>
 <body>
 
-<!-- Header -->
 <header>
   <div class="logo-container">
     <svg class="diamond-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -603,7 +602,6 @@
   </div>
 </header>
 
-<!-- Hero Section -->
 <section id="beranda" class="hero">
   <div class="hero-slider">
     <div class="hero-slide active">
@@ -612,7 +610,6 @@
     <div class="hero-slide">
       <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=1600&h=900&fit=crop" alt="Luxury Watch 2">
     </div>
-
   </div>
   <div class="hero-content">
     <h2>JOHNLUX</h2>
@@ -620,7 +617,6 @@
   </div>
 </section>
 
-<!-- Products Section -->
 <section id="produk">
   <h2>Koleksi Eksklusif</h2>
   <div class="products">
@@ -648,7 +644,6 @@
   </div>
 </section>
 
-<!-- About Section -->
 <section id="tentang">
   <h2>Tentang Johnlux</h2>
   <div class="about-content">
@@ -666,13 +661,12 @@
     </p>
     <p>
       Dari bengkel kecil di Malang hingga menjadi merek internasional yang diakui, Johnlux tetap setia pada komitmen kami untuk menghadirkan 
-      karya seni yang fungsional, elegan, dan abadi. Setiap koleksi Johnlux adalah pernyataan gaya hidup yang mencerminkan kesuksesan, 
+      karya seni yang fungsional, elegan, and abadi. Setiap koleksi Johnlux adalah pernyataan gaya hidup yang mencerminkan kesuksesan, 
       keanggunan, dan apresiasi terhadap keindahan sejati.
     </p>
   </div>
 </section>
 
-<!-- Testimonials Section -->
 <section id="testimoni">
   <h2>Testimoni Pelanggan</h2>
   <div class="testimonials-container">
@@ -711,7 +705,6 @@
   </div>
 </section>
 
-<!-- Contact Section -->
 <section id="kontak">
   <h2>Hubungi Kami</h2>
   <div class="contact-container">
@@ -759,17 +752,15 @@
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <p>© 2024 Rahmad Johan Wulang Nur Arofik</p>
   <p>Kontak: johnlux@gmail.com | +62 822 232 724 164</p>
   <p>Kota Malang, Jawa Timur, Indonesia</p>
 </footer>
 
-<!-- Login Modal -->
 <div id="loginModal" class="modal">
   <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('loginModal')">&times;</span>
+    <span class="close-modal" onclick="closeModal('loginModal')">×</span>
     <h3>Login ke Johnlux</h3>
     <form onsubmit="handleLogin(event)">
       <div class="form-group">
@@ -785,10 +776,9 @@
   </div>
 </div>
 
-<!-- Register Modal -->
 <div id="registerModal" class="modal">
   <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('registerModal')">&times;</span>
+    <span class="close-modal" onclick="closeModal('registerModal')">×</span>
     <h3>Daftar Akun Johnlux</h3>
     <form onsubmit="handleRegister(event)">
       <div class="form-group">
@@ -812,16 +802,14 @@
   </div>
 </div>
 
-<!-- Product Modal -->
 <div id="productModal" class="modal">
   <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('productModal')">&times;</span>
+    <span class="close-modal" onclick="closeModal('productModal')">×</span>
     <div id="productDetailContent"></div>
   </div>
 </div>
 
 <script>
-  // Hero Slider
   let currentSlide = 0;
   const slides = document.querySelectorAll('.hero-slide');
 
@@ -837,7 +825,6 @@
 
   setInterval(nextSlide, 4000);
 
-  // Smooth Scrolling
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -848,7 +835,6 @@
     });
   });
 
-  // Modal Functions
   function openModal(modalId) {
     document.getElementById(modalId).classList.add('active');
   }
@@ -857,7 +843,6 @@
     document.getElementById(modalId).classList.remove('active');
   }
 
-  // Product Data
   const products = {
     royale: {
       name: 'Johnlux Royale',
@@ -955,7 +940,6 @@
     }, 500);
   }
 
-  // Form Handlers
   function handleLogin(event) {
     event.preventDefault();
     const email = document.getElementById('loginEmail').value;
@@ -978,7 +962,6 @@
     document.getElementById('suggestionForm').reset();
   }
 
-  // Close modal when clicking outside
   window.onclick = function(event) {
     if (event.target.classList.contains('modal')) {
       event.target.classList.remove('active');
